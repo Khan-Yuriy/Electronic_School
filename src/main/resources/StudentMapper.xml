@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.eschool.electronic_school.mapper.StudentMapper">
+    <resultMap type="student" id="result">
+        <id property="id" column="id" />
+        <result property="name" column="name"/>
+        <result property="surname" column="surname"/>
+        <result property="birthdate" column="birthdate"/>
+        <result property="specialty" column="specialty"/>
+    </resultMap>
+
+    <select id="findAllStudents" resultType="student" resultMap="result">
+        SELECT * FROM students
+    </select>
+
+    <insert id="addStudent" parameterType="student" keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO students(name, surname, birthdate, specialty)
+        VALUES(#{name}, #{surname}, #{birthdate}, #{specialty})
+    </insert>
+
+    <delete id="deleteStudent" parameterType="long">
+        DELETE FROM students WHERE id = #{id}
+    </delete>
+</mapper>

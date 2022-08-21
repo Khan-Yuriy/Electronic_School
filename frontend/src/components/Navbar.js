@@ -1,0 +1,36 @@
+import * as React from 'react';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+
+export default function NavBar( {isSubmitted, onSubmit} ) {
+  const style={backgroundColor:'black'};
+
+  const handleSubmit = () => { 
+    onSubmit(false);
+  }
+
+  let button;
+  if(isSubmitted){
+    button = <Button color="inherit" onSubmit={handleSubmit}>Logout</Button>;
+  } else {
+    button = <Button color="inherit">Login</Button>;
+  }
+
+  return (
+    <Box sx={{ flexGrow: 1 }} >
+      <AppBar position="static" style={style}>
+        <Toolbar>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            Electronic School
+          </Typography>
+            <a style={{textDecoration:'none', color:'white'}} href='/'>
+              {button}
+            </a>
+        </Toolbar>
+      </AppBar>
+    </Box>
+  );
+}
