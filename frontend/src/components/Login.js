@@ -19,7 +19,6 @@ function Login( {onSubmit}) {
     userService.getAll()
       .then(response => {
         setUsers(response.data);
-        console.log(response.data);
       })
       .catch(error => {
         console.log("Something went wrong: ", error);
@@ -45,7 +44,6 @@ function Login( {onSubmit}) {
         setIsSubmitted(true);
         onSubmit(true);
         navigate("/home");
-        console.log(isSubmitted)
       }
     } else {
       setErrorMessages({ name: "uname", message: errors.uname });
@@ -89,7 +87,7 @@ function Login( {onSubmit}) {
               variant="contained" 
               style={{backgroundColor:'blue', marginTop:'10px'}} 
               type="submit">
-              Log in
+              Sign in
           </Button> 
         </div>
       </form>
@@ -99,7 +97,7 @@ function Login( {onSubmit}) {
   return (
     <div className="app">
       <div className="login-form">
-        <div className="title">Sign In</div>
+        <div className="title">Log in</div>
         {isSubmitted ? <div>User is successfully logged in</div> : renderForm}
       </div>
     </div>

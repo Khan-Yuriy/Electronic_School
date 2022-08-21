@@ -13,7 +13,6 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { TextField } from '@mui/material';
-import { useNavigate } from "react-router-dom";
 import Alert from '@mui/material/Alert';
 import IconButton from '@mui/material/IconButton';
 import Collapse from '@mui/material/Collapse';
@@ -91,7 +90,6 @@ export default function Students() {
       studentService.getAll()
         .then(response => {
           setStudents(response.data);
-          console.log(response.data);
         })
         .catch(error => {
           console.log("Something went wrong: ", error);
@@ -183,7 +181,7 @@ export default function Students() {
                 <StyledTableCell align="right">Specialty</StyledTableCell>
                 <StyledTableCell align="right">
                     
-                <Button variant="contained" style={{backgroundColor:'blue'}} onClick={handleOpenAdd}>Add new</Button>
+                <Button variant="contained" style={{backgroundColor:'green'}} onClick={handleOpenAdd}>Add new</Button>
                 <Modal
                   open={openAdd}   
                   onClose={handleCloseAdd}
@@ -301,6 +299,9 @@ export default function Students() {
                 <StyledTableCell align="right">{student.birthdate}</StyledTableCell>
                 <StyledTableCell align="right">{student.specialty}</StyledTableCell>
                 <StyledTableCell align="right">
+                <a style={{textDecoration:'none'}} href={'/edit/'+student.id}>
+                  <Button variant="contained" style={{backgroundColor:'blue', marginRight: '10px'}}>Edit</Button>
+                </a>
                   <Button variant="contained" style={{backgroundColor:'red'}} onClick={handleOpenDelete}>Delete</Button>
                   <Dialog
                     open={openDelete}
@@ -332,6 +333,3 @@ export default function Students() {
     </Container>
   );
 }
-{/* <Button variant="contained" style={{backgroundColor:'red'}} onClick={(e) => {
-                      handleDelete(student.id)
-                      }}>Delete</Button> */}

@@ -23,4 +23,9 @@ public class AuthController {
         }
         return userMapper.findAll();
     }
+
+    @PostMapping("/register")
+    public void addUser(@RequestBody User user){
+        userMapper.add(user);
+    }
 }

@@ -36,28 +36,19 @@ public class StudentMapper {
         session.commit();
         session.close();
     }
+
+    public Student find(@PathParam("id") Long id){
+        SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+        Student student = session.selectOne("findStudent", id);
+        session.commit();
+        session.close();
+        return student;
+    }
+
+    public void update(Student student){
+        SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+        session.update("updateStudent", student);
+        session.commit();
+        session.close();
+    }
 }
-//package com.eschool.electronic_school.mapper;
-//
-//        import com.eschool.electronic_school.domain.Student;
-//        import org.apache.ibatis.annotations.Delete;
-//        import org.apache.ibatis.annotations.Insert;
-//        import org.apache.ibatis.annotations.Mapper;
-//        import org.apache.ibatis.annotations.Select;
-//
-//        import javax.websocket.server.PathParam;
-//        import java.util.List;
-//
-//@Mapper
-//public interface StudentMapper {
-//
-//    @Select("select * from students")
-//    List<Student> findAll();
-//
-//    @Insert("insert into students(id, name, surname, birthdate, specialty) values " +
-//            "(#{id}, #{name}, #{surname}, #{birthdate}, #{specialty})")
-//    void add(Student student);
-//
-//    @Delete("delete from students where id=#{id}")
-//    void delete(@PathParam("id") Long id);
-//}

@@ -44,4 +44,17 @@ public class StudentController {
     public void delete(@PathVariable(name = "id") Long id){
         studentMapper.delete(id);
     }
+
+    @PutMapping("/edit")
+    public void edit(@RequestBody Student student){
+        Student oldStudent = studentMapper.find(student.getId());
+        System.out.println(student.getId() + " " + student.getName());
+        if(oldStudent != null){
+            oldStudent.setName(student.getName());
+            oldStudent.setSurname(student.getSurname());
+            oldStudent.setBirthdate(student.getBirthdate());
+            oldStudent.setSpecialty(student.getSpecialty());
+            studentMapper.update(oldStudent);
+        }
+    }
 }

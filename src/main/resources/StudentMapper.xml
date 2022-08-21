@@ -23,4 +23,13 @@
     <delete id="deleteStudent" parameterType="long">
         DELETE FROM students WHERE id = #{id}
     </delete>
+
+    <select id="findStudent" parameterType="long" resultType="student" resultMap="result">
+        SELECT * FROM students WHERE id = #{id}
+    </select>
+    
+    <update id="updateStudent" parameterType="student">
+        UPDATE students SET name = #{name}, surname = #{surname}, birthdate = #{birthdate}, specialty = #{specialty}
+        WHERE id = #{id}
+    </update>
 </mapper>

@@ -4,4 +4,8 @@ function getAll(){
     return httpClient.get('/auth/users');
 }
 
-export default {getAll};
+function add(data){
+    return httpClient.post('/auth/register', data)
+}
+
+export default {getAll, add};

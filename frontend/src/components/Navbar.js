@@ -14,9 +14,18 @@ export default function NavBar( {isSubmitted, onSubmit} ) {
 
   let button;
   if(isSubmitted){
-    button = <Button color="inherit" onSubmit={handleSubmit}>Logout</Button>;
+    button = <a style={{textDecoration:'none', color:'white'}} href='/'>
+      <Button color="inherit" onSubmit={handleSubmit}>Logout</Button>
+      </a>
   } else {
-    button = <Button color="inherit">Login</Button>;
+    button = <Typography>
+      <a style={{textDecoration:'none', color:'white'}} href='/register'>
+        <Button color="inherit">Login</Button>
+      </a>
+      <a style={{textDecoration:'none', color:'white'}} href='/register'>
+        <Button color="inherit">Register</Button>
+      </a>
+    </Typography>
   }
 
   return (
@@ -26,9 +35,7 @@ export default function NavBar( {isSubmitted, onSubmit} ) {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Electronic School
           </Typography>
-            <a style={{textDecoration:'none', color:'white'}} href='/'>
-              {button}
-            </a>
+            {button}
         </Toolbar>
       </AppBar>
     </Box>
